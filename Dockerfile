@@ -2,7 +2,7 @@ FROM alpine:3.3
 
 RUN \
   apk add wget ca-certificates --update-cache && \
-  wget -q -O - https://github.com/TestLinkOpenSourceTRMS/testlink-code/archive/1.9.13.tar.gz | tar zxf - && \
+  wget -q -O - https://github.com/TestLinkOpenSourceTRMS/testlink-code/archive/1.9.14.tar.gz | tar zxf - && \
   mkdir -p /var && \
   mv testlink-* /var/testlink && \
   rm -rf testlink* && \
