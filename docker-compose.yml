@@ -1,9 +1,7 @@
 web:
-  image: techknowlogick/openresty:latest
+  image: techknowlogick/testlink:web
   volumes_from:
     - testlink
-  volumes:
-    - ./nginx.conf:/etc/nginx/nginx.conf:ro
   links:
     - php:php
   ports:
