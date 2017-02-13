@@ -1,31 +1,30 @@
-web:
-  image: techknowlogick/testlink:web
-  volumes_from:
-    - testlink
-  links:
-    - php:php
-  ports:
-    - 80
-  environment:
-    - DATABASE_HOST=db
-    - DATABASE_PASS=testlink
+version: '2'
 
-php:
-  image: techknowlogick/testlink:php
-  volumes_from:
-    - testlink
-    - testlink_data
-  links:
-    - db:db
-
-db:
-  image: mariadb:10
-  environment:
-   - MYSQL_DATABASE=testlink
-   - MYSQL_ROOT_PASSWORD=testlink
-
-testlink:
-  image: techknowlogick/testlink:latest
-
-testlink_data:
-  image: techknowlogick/testlink:data
+services:
+  web:
+    image: techknowlogick/testlink:web
+    volumes_from:
+      - testlink
+    depends_on:
+      - php
+    ports:
+      - 80
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PASS=testlink
+  php:
+    image: techknowlogick/testlink:php
+    volumes_from:
+      - testlink
+      - testlink_data
+    depends_on:
+      - db
+  db:
+    image: mariadb:10
+    environment:
+     - MYSQL_DATABASE=testlink
+     - MYSQL_ROOT_PASSWORD=testlink
+  testlink:
+    image: techknowlogick/testlink:latest
+  testlink_data:
+    image: techknowlogick/testlink:data
