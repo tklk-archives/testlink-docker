@@ -1,3 +1,3 @@
-FROM techknowlogick/openresty:alpine
+FROM techknowlogick/openresty
 
 ADD nginx.conf /etc/nginx/
